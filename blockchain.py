@@ -33,7 +33,6 @@ class Blockchain:
         else:
             raise ValueError('Invalid URL')
 
-
     def valid_chain(self, chain):
         """
         Determine if a given blockchain is valid
@@ -56,6 +55,7 @@ class Blockchain:
                 return False
 
             # Check that the Proof of Work is correct
+            # here change the mistake
             if not self.valid_proof(last_block['proof'], block['proof'], block['previous_hash']):
                 return False
 
@@ -85,7 +85,6 @@ class Blockchain:
             if response.status_code == 200:
                 length = response.json()['length']
                 chain = response.json()['chain']
-
 
                 # Check if the length is longer and the chain is valid
                 if length > max_length and self.valid_chain(chain):
@@ -186,7 +185,6 @@ class Blockchain:
         :return: <bool> True if correct, False if not.
 
         """
-
 
         guess = f'{last_proof}{proof}{last_hash}'.encode()
         guess_hash = hashlib.sha256(guess).hexdigest()
